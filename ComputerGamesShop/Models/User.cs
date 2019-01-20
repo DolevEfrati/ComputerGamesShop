@@ -8,7 +8,6 @@ namespace ComputerGamesShop.Models
         #region Properties
 
         [Key]
-        [Required]
         public int UserID { get; set; }
 
         [Display(Name = "First name")]

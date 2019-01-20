@@ -19,4 +19,6 @@
   <ItemGroup>
     <None Include="wwwroot\images\slider-1.jpg" />
   </ItemGroup>
+    <Folder Include="Images\games\" />
+  </ItemGroup>
 </Project>

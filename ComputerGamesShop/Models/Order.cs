@@ -60,16 +60,4 @@ namespace ComputerGamesShop.Models
 
         # endregion
     }
-
-    public class OrderYearsViewModel
-    {
-        #region Properties
-        [DisplayName("Year")]
-        public int Year { get; set; }
-
-        [DisplayName("Orders a year")]
-        public int PostCount { get; set; }
-        
-        #endregion
-    }
 }
