@@ -1,0 +1,22 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputerGamesShop", "ComputerGamesShop.csproj", "{F0C5E8CF-5152-4E25-9733-74EA3BBFF6CA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{90B62DDA-2C8A-491C-8E61-1221D57CD60C}"
+	ProjectSection(SolutionItems) = preProject
+		Startup.Auth.cs = Startup.Auth.cs
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F0C5E8CF-5152-4E25-9733-74EA3BBFF6CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0C5E8CF-5152-4E25-9733-74EA3BBFF6CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0C5E8CF-5152-4E25-9733-74EA3BBFF6CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0C5E8CF-5152-4E25-9733-74EA3BBFF6CA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
