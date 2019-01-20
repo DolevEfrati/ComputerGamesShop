@@ -8,6 +8,7 @@
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/css/style.css" />
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -17,33 +18,43 @@
     </environment>
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">ComputerGamesShop</a>
+        <!-- Header section -->
+        <header class="header-section">
+            <div class="container">
+                <!-- logo -->
+                <a class="site-logo" href="index.html">
+                    <img src="img/logo.png" alt="">
+                </a>
+                <div class="user-panel">
+                    <a href="#">Login</a>  /  <a href="#">Register</a>
+                </div>
+                <!-- responsive -->
+                <div class="nav-switch">
+                    <i class="fa fa-bars"></i>
+                </div>
+                <!-- site menu -->
+                <nav class="main-menu">
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/games">Games</a></li>
+                        <li><a href="categories.html">Blog</a></li>
+                        <li><a href="community.html">Forums</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                </ul>
+        </header>
+        <!-- Header section end -->
+        <div>
+            <div style="min-height: 77vh">
+            @RenderBody()
             </div>
+            <footer class="footer-section">
+                <div class="container">
+                        <p class="copyright">&copy; 2019 - ComputerGamesShop</p>
+                    </div>
+            </footer>
         </div>
-    </nav>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2018 - ComputerGamesShop</p>
-        </footer>
-    </div>
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>

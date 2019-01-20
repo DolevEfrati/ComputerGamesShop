@@ -26,8 +26,6 @@ namespace ComputerGamesShop
                 {
                     SeedPublisher.InitialPublisher(services);
                     SeedGames.InitialGames(services);
-                    SeedStores.InitialStores(services);
-                    SeedUsers.InitialUsers(services);
                 }
                 catch (Exception ex)
                 {
