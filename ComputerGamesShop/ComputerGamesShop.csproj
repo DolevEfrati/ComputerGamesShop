@@ -12,4 +12,31 @@
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\images\games\ASSASSINS CREED.jpg" />
+    <None Include="wwwroot\images\games\BATTLEFIELD.PNG" />
+    <None Include="wwwroot\images\games\DRAGON AGE.jpg" />
+    <None Include="wwwroot\images\games\FIFA.JPG" />
+    <None Include="wwwroot\images\games\GAME OF THRONES.jpg" />
+    <None Include="wwwroot\images\games\GTAV.png" />
+    <None Include="wwwroot\images\games\HEARTHSTONE.jpg" />
+    <None Include="wwwroot\images\games\Portal_2.jpg" />
+    <None Include="wwwroot\images\games\PROJECT CARS.jpg" />
+    <None Include="wwwroot\images\games\ROCKET LEAGUE.jpg" />
+    <None Include="wwwroot\images\games\ROLLERCOASTER.jpg" />
+    <None Include="wwwroot\images\games\StarCraft_II_-_Box_Art.jpg" />
+    <None Include="wwwroot\images\games\The_Elder_Scrolls_V_Skyrim_cover.png" />
+    <None Include="wwwroot\images\games\THE_SIMS_4.jpg" />
+    <None Include="wwwroot\images\publisher\bandai namco.png" />
+    <None Include="wwwroot\images\publisher\bethesda.png" />
+    <None Include="wwwroot\images\publisher\blizzard.jpg" />
+    <None Include="wwwroot\images\publisher\ea.png" />
+    <None Include="wwwroot\images\publisher\microsoft.jpg" />
+    <None Include="wwwroot\images\publisher\psyonix.png" />
+    <None Include="wwwroot\images\publisher\rockstar.png" />
+    <None Include="wwwroot\images\publisher\telltale.png" />
+    <None Include="wwwroot\images\publisher\ubisoft.png" />
+    <None Include="wwwroot\images\publisher\valve.jpg" />
+  </ItemGroup>
 </Project>
