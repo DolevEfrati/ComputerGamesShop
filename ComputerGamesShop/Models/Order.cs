@@ -42,7 +42,6 @@ namespace ComputerGamesShop.Models
                 return total;
             }
         }
-
         #endregion
 
         #region Navigate Properties
