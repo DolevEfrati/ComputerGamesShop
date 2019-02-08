@@ -4,45 +4,26 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
-
+<link rel="stylesheet" href="~/css/games.css" type="text/css" />
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Title)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Description)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Genre)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Price)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Image)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.IsMultiplayer)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ReleaseDate)
-                </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Publisher)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
 @foreach (var item in Model) {
-        <tr>
-            <td>
+    <div class="game">
+        <div class="game-img">
+            <img src="@Html.DisplayFor(modelItem => item.Image)">
+        </div>
+        <div class="content">
+            <span class="header">@Html.DisplayFor(modelItem => item.Title)</span>
+            <span class="publisher">@Html.DisplayFor(modelItem => item.Publisher.Name)
+            </span>
+            <span class="description">
+                @Html.DisplayFor(modelItem => item.Description)
+            </span>
+        </div>
+    </div>
+
+            @*<td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
             <td>
@@ -71,7 +52,5 @@
                 <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
             </td>
-        </tr>
+        </tr>*@
 }
-    </tbody>
-</table>

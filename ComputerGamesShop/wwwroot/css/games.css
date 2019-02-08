@@ -1,0 +1,33 @@
+﻿.game {
+       display: flex;
+       flex-direction: row;
+       padding: 0 20px;
+       margin: 0 20px 10px 20px;
+}
+
+.game-img {
+    
+}
+
+    .game-img > img {
+        width: 50px;
+        height: 75px;
+        object-fit: cover;
+    }
+
+.game .content {
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px;
+}
+
+.content .header {
+    font-size: 1.2em;
+    font-weight: bold;
+    font-family: our-font;
+    text-shadow: 1px 1px 2px grey;
+}
+
+.content .publisher {
+    font-style: italic;
+}
