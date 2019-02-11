@@ -1,4 +1,9 @@
-﻿.game {
+﻿/*.games-list {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.game {
        display: flex;
        flex-direction: row;
        padding: 0 20px;
@@ -30,4 +35,14 @@
 
 .content .publisher {
     font-style: italic;
+}*/
+
+.menu, #priceAndMultiplayer {
+    margin-top: 20px;
 }
+
+#list-group-item-heading {
+    padding-left: 10px;
+}
+
+

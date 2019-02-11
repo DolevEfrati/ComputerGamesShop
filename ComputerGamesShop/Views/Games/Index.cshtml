@@ -1,56 +1,108 @@
 ﻿@model IEnumerable<ComputerGamesShop.Models.Game>
 
 @{
-    ViewData["Title"] = "Index";
 }
 
 <link rel="stylesheet" href="~/css/games.css" type="text/css" />
+
+<header class="row">
+    <h2>Games</h2>
+</header>
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-@foreach (var item in Model) {
-    <div class="game">
-        <div class="game-img">
-            <img src="@Html.DisplayFor(modelItem => item.Image)">
-        </div>
-        <div class="content">
-            <span class="header">@Html.DisplayFor(modelItem => item.Title)</span>
-            <span class="publisher">@Html.DisplayFor(modelItem => item.Publisher.Name)
-            </span>
-            <span class="description">
-                @Html.DisplayFor(modelItem => item.Description)
-            </span>
+<br />
+
+<div class="row" id="menu">
+    <div class="col-md-12">
+        <div class="list-group">
+            @foreach (var game in Model)
+            {
+                <div class="list-group-item">
+                    <h3 class="list-group-item-heading">@Html.DisplayFor(modelItem => game.Title)</h3>
+                    <p class="list-group-item-text">@Html.DisplayFor(modelItem => game.Description)</p>
+                    <br /><br />
+                    <div id="priceAndMultiplayer" class="col-md-offset-1">
+                        <div> @Html.DisplayFor(modelItem => game.Price) $</div>
+                        @if (game.IsMultiplayer == true)
+                        {
+                            <div>multiplayer</div>
+                        }
+                        else
+                        {
+                            <div>single player</div>
+                        }
+
+                    </div>
+                    <div class="row actions col-md-offset-1" style="padding-left: 20px">
+                        @*@if (user != null && user.FirstName == "admin")
+                        {
+                            <div style="display: inline-block;">
+                                <a>@Html.ActionLink("Edit", "Edit", new { ID = game.ID })</a> |
+                                <a>@Html.ActionLink("Delete", "Delete", new { ID = game.ID })</a> |
+                            </div>
+                        }
+                        @if (cart != null && cart.Contains(game.ID))
+                        {
+                            <a id="inCart" style="pointer-events:none;">in cart</a>
+                        }
+                        else
+                        {
+                            <a id="inCart_@game.ID" style="display:none;pointer-events:none;">in cart</a>
+                            <a id="addToCart_@game.ID" onclick="addToCart(@game.ID)">Add to cart</a>
+                        }
+                        | @Html.ActionLink("Details", "details", new { ID = game.ID })*@
+                    </div>
+                    <img style="margin-top:30px" src="@Html.DisplayFor(modelItem => game.Image)" />
+                </div>
+            }
         </div>
     </div>
+</div>
 
-            @*<td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Genre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Image)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsMultiplayer)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReleaseDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Publisher.Name)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>*@
-}
+
+@*<div class="games-list">
+        @foreach (var game in Model)
+        {
+            <div class="game">
+                <div class="game-img">
+                    <img src="@Html.DisplayFor(modelItem => game.Image)">
+                </div>
+                <div class="content">
+                    <span class="header">@Html.DisplayFor(modelItem => game.Title)</span>
+                    <span class="publisher">@Html.DisplayFor(modelItem => game.Publisher.Name)</span>
+                    <span class="description">@Html.DisplayFor(modelItem => game.Description)</span>
+                </div>
+            </div>
+        }
+    </div>*@
+@*<td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Genre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Image)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsMultiplayer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReleaseDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Publisher.Name)
+        </td>
+        <td>
+            <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+            <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+            <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+        </td>
+    </tr>*@
