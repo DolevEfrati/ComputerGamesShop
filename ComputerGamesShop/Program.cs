@@ -10,7 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using ComputerGamesShop.Models.Seed;
+using ComputerGamesShop.Data.Seed;
 
 namespace ComputerGamesShop
 {
@@ -24,11 +24,11 @@ namespace ComputerGamesShop
                 var services = scope.ServiceProvider;
                 try
                 {
-                    SeedPublishers.InitialPublisher(services);
-                    SeedGames.InitialGames(services);
-                    SeedStores.InitialStores(services);
-                    SeedUsers.InitialUsers(services);
-                    SeedOrders.InitialOrders(services);
+                    //SeedPublishers.InitialPublisher(services);
+                    //SeedGames.InitialGames(services);
+                    //SeedStores.InitialStores(services);
+                    //SeedUsers.InitialUsers(services);
+                    //SeedOrders.InitialOrders(services);
                 }
                 catch (Exception ex)
                 {

@@ -1,48 +1,15 @@
-﻿/*.games-list {
-    margin-left: 10%;
-    margin-right: 10%;
+﻿.container-games {
+    overflow: auto;
 }
 
-.game {
-       display: flex;
-       flex-direction: row;
-       padding: 0 20px;
-       margin: 0 20px 10px 20px;
+.games-result-list {
+    margin-top: 2rem;
 }
 
-.game-img {
-    position: relative;
+.games-result-list li {
+    background-color: whitesmoke;
+    padding-top: 1.5rem;
+    border-top-left-radius: inherit;
+    border: groove;
+    border-color: aqua;
 }
-
-.game-img > img {
-    position: absolute;
-    height: 1000px;
-    z-index: 100;
-}
-
-.game .content {
-    display: flex;
-    flex-direction: column;
-    padding: 0 10px;
-}
-
-.content .header {
-    font-size: 1.2em;
-    font-weight: bold;
-    font-family: our-font;
-    text-shadow: 1px 1px 2px grey;
-}
-
-.content .publisher {
-    font-style: italic;
-}*/
-
-.menu, #priceAndMultiplayer {
-    margin-top: 20px;
-}
-
-#list-group-item-heading {
-    padding-left: 10px;
-}
-
-

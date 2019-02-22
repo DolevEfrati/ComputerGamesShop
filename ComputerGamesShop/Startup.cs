@@ -24,7 +24,7 @@ namespace ComputerGamesShop
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-
+            services.AddSession();
             services.AddDbContext<ComputerGamesShopContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("ComputerGamesShopContext")));
         }
@@ -43,7 +43,7 @@ namespace ComputerGamesShop
             }
 
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

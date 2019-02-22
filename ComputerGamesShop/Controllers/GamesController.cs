@@ -9,6 +9,12 @@ using ComputerGamesShop.Models;
 
 namespace ComputerGamesShop.Controllers
 {
+    public enum MULTIPLAYER_OPTIONS
+    {
+        yes,
+        no
+    };
+
     public class GamesController : Controller
     {
         private readonly ComputerGamesShopContext _context;
@@ -22,6 +28,7 @@ namespace ComputerGamesShop.Controllers
         public async Task<IActionResult> Index()
         {
             var computerGamesShopContext = _context.Game.Include(g => g.Publisher);
+            ViewBag.MaxPrice = _context.Game.Select(x => x.Price).Max();
             return View(await computerGamesShopContext.ToListAsync());
         }
 

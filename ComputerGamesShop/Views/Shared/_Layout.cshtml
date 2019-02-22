@@ -1,8 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="cache-control" content="no-cache" />
     <title>@ViewData["Title"] - ComputerGamesShop</title>
 
     <environment include="Development">
@@ -18,43 +20,42 @@
     </environment>
 </head>
 <body>
-        <!-- Header section -->
-        <header class="header-section">
-            <div class="container">
-                <!-- logo -->
-                <a class="site-logo" href="index.html">
-                    <img src="img/logo.png" alt="">
-                </a>
-                <div class="user-panel">
-                    <a href="/users/login">Login</a>  /  <a href="#">Register</a>
-                </div>
-                <!-- responsive -->
-                <div class="nav-switch">
-                    <i class="fa fa-bars"></i>
-                </div>
-                <!-- site menu -->
-                <nav class="main-menu">
-                    <ul>
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/games">Games</a></li>
-                        <li><a href="categories.html">Blog</a></li>
-                        <li><a href="community.html">Forums</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </nav>
+    <header class="header-section">
+        <div class="container">
+            <div class="user-panel">
+                @if (!Globals.isConnectedUser(Context.Session))
+                {
+                    <a href="/Home/login">Login</a><span>  /  </span><a href="#"> Register </a>
+                }
+                else
+                {
+                    <a href="/Home/logout">Logout</a>
+                }
+
             </div>
-        </header>
-        <!-- Header section end -->
+            <nav class="main-menu">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/games">Games</a></li>
+                    <li><a href="categories.html">Blog</a></li>
+                    <li><a href="community.html">Forums</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="body-content">
         <div>
-            <div style="min-height: 77vh">
             @RenderBody()
-            </div>
-            <footer class="footer-section">
-                <div class="container">
-                        <p class="copyright">&copy; 2019 - ComputerGamesShop</p>
-                    </div>
+        </div>
+        <div id="footer">
+            <footer>
+                <div class="container" style="margin-left: 6px;">
+                    <p class="copyright">&copy; 2019 - ComputerGamesShop</p>
+                </div>
             </footer>
         </div>
+    </div>
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>

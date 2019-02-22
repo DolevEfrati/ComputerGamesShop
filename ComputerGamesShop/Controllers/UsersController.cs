@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ComputerGamesShop.Models;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 
 namespace ComputerGamesShop.Controllers
 {
@@ -47,33 +49,7 @@ namespace ComputerGamesShop.Controllers
         {
             return View();
         }
-
-
-        public IActionResult Login()
-        {
-
-            return File("~/" + "login.html", "text/html");
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Login([Bind("Email,Password")] User loginData)
-        {
-            if (loginData.Email == null || loginData.Password == null)
-            {
-                return Unauthorized();
-            }
-
-            var user = await _context.User
-                .SingleOrDefaultAsync(m => m.Email == loginData.Email && 
-                                        m.Password == loginData.Password);
-            if (user == null)
-            {
-                return Unauthorized();
-            }
-
-            return Ok(user);
-        }
-
+        
         // POST: Users/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.

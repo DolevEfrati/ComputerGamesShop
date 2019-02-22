@@ -4,8 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using ComputerGamesShop.Models;
 
-namespace ComputerGamesShop.Models.Seed
+
+namespace ComputerGamesShop.Data.Seed
 {
     public class SeedOrders
     {

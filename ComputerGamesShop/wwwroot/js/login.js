@@ -16,14 +16,13 @@ $('#login-btn').click(function(event){
     if (isValid) {
         $.ajax({
             type: 'POST',
-            url:"/users/login",
+            url: "/Home/login",
             datatype: 'Json',
             data: {
                 email: $('#email').val(),
                 password: $('#password').val()
             },
-            success: function(data, status){
-                localStorage.setItem('user', JSON.stringify(data))
+            success: function () {
                 location.href = '/'
             },
             error: function (err, status, reason) {
@@ -34,11 +33,8 @@ $('#login-btn').click(function(event){
 });
 
 function validateForm() {
-
     var isValid = true
-
     var email = $('#email').val()
-
     var password = $('#password').val()
 
     if (!password) {
@@ -47,7 +43,6 @@ function validateForm() {
     } else {
         $('#password-error').text('')
     }
-
 
     if (!email) {
         $('#email-error').text('empty')

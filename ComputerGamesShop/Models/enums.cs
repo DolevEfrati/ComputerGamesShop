@@ -25,5 +25,5 @@
         Cards,
         Strategy,
         Sports
-    };
+    }; 
 }
