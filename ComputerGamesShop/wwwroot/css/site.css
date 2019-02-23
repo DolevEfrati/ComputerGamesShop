@@ -26,6 +26,10 @@
     }
 }
 
+.body-content {
+    min-height: 100%;
+}
+
 footer {
     background: #252525;
     bottom: 0;

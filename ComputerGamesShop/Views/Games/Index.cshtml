@@ -5,7 +5,23 @@
 
 }
 <div class="container-games">
-    <ul class="games-result-list col-md-8 column-in-center" style="list-style-type: none; margin: auto;">
+    <div class="col-md-10" style="margin: auto; padding-top:25px; padding-bottom:25px;">
+        <form class="form-inline">
+            <div class="form-group">
+                <label for="focusedInput" style="padding-right:3px;">Game's name:</label>
+                <input class="form-control" onkeyup="filterGames()" id="gameNameSearch" type="text" placeholder="Search..">
+
+                <label style="padding-left:6px; padding-right:3px;"> Is Multiplayer: </label>
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-light">both</button>
+                    <button type="button" class="btn btn-light">yes</button>
+                    <button type="button" class="btn btn-light">no</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <ul id="games-list" class="games-result-list col-md-8 column-in-center" style="list-style-type: none; margin: auto;">
         @foreach (var game in Model)
         {
             <li class="row" style="margin-bottom:5%;">
@@ -13,21 +29,26 @@
                     <img src="@game.Image" style="width:80%; height:200px;" />
                 </div>
                 <div class="col-md-4 game-title" style="height:200px">
-                    <h4>
+                    <h4 class="title-string">
                         @game.Title
                     </h4>
-                    <h6>
-                        @game.Price
-                    </h6>
+                    @if (game.IsMultiplayer)
+                    {
+                        <h6>Multiplayer</h6>
+                    }
+                    else
+                    {
+                        <h6>Single player</h6>
+                    }
                 </div>
                 <div class="col-md-2" style="height:200px">
-                    
+
                 </div>
                 <div class="col-md-3" style="height:200px">
                     <div class="game-ofer">
-                        <h2 class="price">
-                            @game.Price
-                        </h2>
+                        <h3 class="price">
+                            @game.Price$
+                        </h3>
 
                         <form action="/Search/HotelDetails" method="get" id="offer-form"></form>
                         <span class="input-group-btn">
@@ -39,5 +60,7 @@
         }
     </ul>
 </div>
-<link rel="stylesheet" href="~/css/games.css" />
+<script type="text/javascript" src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/js/games.js"></script>
+<link rel="" href="~/css/games.css" />
 <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.css" />
