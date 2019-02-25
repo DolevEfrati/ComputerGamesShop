@@ -1,0 +1,28 @@
+﻿.container-publishers {
+    overflow: auto;
+}
+
+.publishers-result-list {
+    margin-top: 2rem;
+}
+
+    .publishers-result-list li {
+        background-color: #f4feff;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        border-radius: 30px;
+        border: groove;
+        border-color: #b3ffff;
+    }
+        .publishers-result-list li img {
+            max-height: 100%;
+            max-width: 100%;
+            width: auto;
+            height: auto;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }

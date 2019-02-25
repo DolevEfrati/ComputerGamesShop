@@ -25,7 +25,11 @@ namespace ComputerGamesShop
 
         public static bool isManagerConnected(ISession session)
         {
-            return (session.GetString(IS_MANAGER_SESSION_KEY).ToLower() == "true");
+            if (isConnectedUser(session))
+            {
+                return (session.GetString(IS_MANAGER_SESSION_KEY).ToLower() == "true");
+            }
+            return false;
         }
     }
 }

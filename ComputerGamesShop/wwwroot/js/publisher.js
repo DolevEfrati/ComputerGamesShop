@@ -1,11 +1,11 @@
-﻿function filterGames(condition) {
+﻿function filterPublishers(condition) {
     var input, filter, ul, li, h4, i, txtValue;
-    input = document.getElementById("gameNameSearch");
+    input = document.getElementById("publisherNameSearch");
     filter = input.value.toUpperCase();
-    ul = document.getElementById("games-list");
+    ul = document.getElementById("publishers-list");
     li = ul.getElementsByTagName("li");
     for (i = 0; i < li.length; i++) {
-        h4 = li[i].getElementsByClassName("title-string")[0];
+        h4 = li[i].getElementsByClassName("name-string")[0];
         txtValue = h4.textContent || h4.innerText;
         if (txtValue.toUpperCase().indexOf(filter) > -1) {
             li[i].style.display = "";
@@ -13,12 +13,4 @@
             li[i].style.display = "none";
         }
     }
-}
-
-$("#Price").change(function () {
-    $("#max").text($(this).val() + '$');
-});
-
-function showVal(newVal) {
-    document.getElementById("max").innerHTML = newVal;
 }

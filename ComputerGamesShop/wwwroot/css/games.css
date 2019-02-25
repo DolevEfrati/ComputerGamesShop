@@ -6,10 +6,11 @@
     margin-top: 2rem;
 }
 
-.games-result-list li {
-    background-color: whitesmoke;
-    padding-top: 1.5rem;
-    border-top-left-radius: inherit;
-    border: groove;
-    border-color: aqua;
-}
+    .games-result-list li {
+        background-color: whitesmoke;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        border-radius: 30px;
+        border: groove;
+        border-color: #ffff99;
+    }

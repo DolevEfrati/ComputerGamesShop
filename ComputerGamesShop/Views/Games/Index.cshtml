@@ -5,20 +5,25 @@
 
 }
 <div class="container-games">
-    <div class="col-md-10" style="margin: auto; padding-top:25px; padding-bottom:25px;">
+    <div class="col-md-7 column-in-center" style="margin: auto; padding-top:25px; padding-bottom:25px;">
         <form class="form-inline">
             <div class="form-group">
                 <label for="focusedInput" style="padding-right:3px;">Game's name:</label>
-                <input class="form-control" onkeyup="filterGames()" id="gameNameSearch" type="text" placeholder="Search..">
+                <input class="form-control" onkeyup="filterGames()" id="gameNameSearch" type="text" placeholder="Search...">
 
-                <label style="padding-left:6px; padding-right:3px;"> Is Multiplayer: </label>
+                <label style="padding-left:15px; padding-right:3px;"> Is Multiplayer: </label>
                 <div class="btn-group" role="group">
                     <button type="button" class="btn btn-light">both</button>
                     <button type="button" class="btn btn-light">yes</button>
                     <button type="button" class="btn btn-light">no</button>
                 </div>
+
+                <label style="padding-left:8px;"> Price: </label>
+                <span id="min" style="padding-left:5px; padding-right:5px;"> 0</span>
+                <input type="range" min="0" max="@ViewBag.MaxPrice" value="@ViewBag.MaxPrice" class="slider" id="Price" onchange="showVal(this.value)" />
+                <span id="max" style="padding-left:5px;">@ViewBag.MaxPrice$</span>
             </div>
-        </form>
+        </form> 
     </div>
 
     <ul id="games-list" class="games-result-list col-md-8 column-in-center" style="list-style-type: none; margin: auto;">
@@ -26,9 +31,9 @@
         {
             <li class="row" style="margin-bottom:5%;">
                 <div class="col-md-3 game-image">
-                    <img src="@game.Image" style="width:80%; height:200px;" />
+                    <img src="@game.Image" style="width:80%; height:200px; border-radius: 8px;" />
                 </div>
-                <div class="col-md-4 game-title" style="height:200px">
+                <div class="col-md-6 game-title" style="height:200px">
                     <h4 class="title-string">
                         @game.Title
                     </h4>
@@ -40,19 +45,26 @@
                     {
                         <h6>Single player</h6>
                     }
-                </div>
-                <div class="col-md-2" style="height:200px">
-
+                    <p>@game.Description</p>
                 </div>
                 <div class="col-md-3" style="height:200px">
-                    <div class="game-ofer">
+                    <div class="game-options">
                         <h3 class="price">
                             @game.Price$
                         </h3>
-
-                        <form action="/Search/HotelDetails" method="get" id="offer-form"></form>
                         <span class="input-group-btn">
-                            <button class="btn btn-info" type="submit" form="offer-form" value="@game.ID" name="id">View Offer</button>
+                            @if (Globals.isConnectedUser(Context.Session))
+                            {
+                                @if (Globals.isManagerConnected(Context.Session))
+                                {
+                                    <button class="btn" type="submit" form="remove-game-btn" value="@game.ID" style="width:80px; background-color:#ff3333;">delete</button>
+                                    <button class="btn" type="submit" form="edit-game-btn" value="@game.ID" style="width:80px; background-color:#b34700;">edit</button>
+                                }
+                                else
+                                {
+                                    <button class="btn" type="submit" form="add-to-cert-btn" value="@game.ID" style="background-color:#ff8000;">add to cert</button>
+                                }
+                            }
                         </span>
                     </div>
                 </div>
@@ -62,5 +74,5 @@
 </div>
 <script type="text/javascript" src="~/lib/jquery/dist/jquery.js"></script>
 <script src="~/js/games.js"></script>
-<link rel="" href="~/css/games.css" />
+<link rel="stylesheet" href="~/css/games.css" />
 <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.css" />
