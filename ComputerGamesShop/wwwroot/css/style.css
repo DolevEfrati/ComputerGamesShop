@@ -73,7 +73,7 @@ ol {
     clear: both;
     overflow: hidden;
     height: 60px;
-    padding-top: 18px;
+    padding-top: 10px;
     border-bottom: 1px solid #ffb320;
 }
 
@@ -81,7 +81,7 @@ ol {
     float: right;
     font-weight: 500;
     background: #ffb320;
-    padding: 4px 28px;
+    padding: 8px 28px;
     border-radius: 30px;
 }
 
@@ -96,6 +96,7 @@ ol {
 
 .main-menu {
     float: right;
+    padding-top: 8px;
     margin-right: 170px;
 }
 

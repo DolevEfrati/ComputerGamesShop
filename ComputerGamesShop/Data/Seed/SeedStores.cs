@@ -12,10 +12,10 @@ namespace ComputerGamesShop.Data.Seed
     {
         public static List<Store> stores = new List<Store>
         {
-            new Store {StoreID = 1, StoreCity= "Tel Aviv-yafo", StoreName = "Fog Games", StoresPhoneNumber = "03-4678953", StoreStreet = "HaKirya"},
-            new Store {StoreID = 2, StoreCity= "Jerusalem", StoreName = "Fog Games", StoresPhoneNumber = "09-7895034", StoreStreet = "Derech Namir 34"},
-            new Store {StoreID = 3, StoreCity= "Ramat Gan", StoreName = "Fog Games", StoresPhoneNumber = "03-6457890", StoreStreet = "Eli Wizel 7"},
-            new Store {StoreID = 4, StoreCity= "Eilat", StoreName = "Fog Games", StoresPhoneNumber = "09-8765942", StoreStreet = "La Guardiya 32"}
+            new Store {StoreID = 1, StoreCity= "Tel Aviv-yafo", StoreName = "City of games", StoresPhoneNumber = "03-4678953", StoreStreet = "HaKirya"},
+            new Store {StoreID = 2, StoreCity= "Jerusalem", StoreName = "City of games", StoresPhoneNumber = "09-7895034", StoreStreet = "Derech Namir 34"},
+            new Store {StoreID = 3, StoreCity= "Ramat Gan", StoreName = "City of games", StoresPhoneNumber = "03-6457890", StoreStreet = "Eli Wizel 7"},
+            new Store {StoreID = 4, StoreCity= "Eilat", StoreName = "City of games", StoresPhoneNumber = "09-8765942", StoreStreet = "La Guardiya 32"}
         };
 
         public static void InitialStores(IServiceProvider serviceProvider)

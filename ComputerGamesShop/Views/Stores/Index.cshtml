@@ -1,53 +1,31 @@
 ﻿@model IEnumerable<ComputerGamesShop.Models.Store>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Stores";
 }
 
-<h2>Index</h2>
+<div class="stores-list col-md-4">
+    <ul class="list-group list-group-flush">
+        @foreach (var store in Model)
+        {
+            <li class="list-group-item">
+                <h4 class="store-name">@store.StoreName</h4>
+                <br />
+                <h6 class="store-location">
+                    <span class="store-city">@store.StoreCity</span> -
+                    <span class="store-street">@store.StoreStreet</span>
+                </h6>
+                <span> Tel: @store.StoresPhoneNumber</span>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.StoreName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.StoreCity)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.StoreStreet)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.StoresPhoneNumber)
-                </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.StoreName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StoreCity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StoreStreet)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StoresPhoneNumber)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.StoreID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.StoreID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.StoreID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+            </li>
+        }
+    </ul>
+
+</div>
+<div class="google-map col-md-8">
+
+</div>
+<script type="text/javascript" src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/js/stores.js"></script>
+<link rel="stylesheet" href="~/css/stores.css" />
+<link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.css" />
