@@ -26,7 +26,7 @@ namespace ComputerGamesShop
                 {
                     //SeedPublishers.InitialPublisher(services);
                     //SeedGames.InitialGames(services);
-                    //SeedStores.InitialStores(services);
+                    SeedStores.InitialStores(services);
                     //SeedUsers.InitialUsers(services);
                     //SeedOrders.InitialOrders(services);
                 }

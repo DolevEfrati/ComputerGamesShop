@@ -53,7 +53,7 @@ namespace ComputerGamesShop.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("StoreID,StoreName,StoreCity,StoreStreet,StoresPhoneNumber")] Store store)
+        public async Task<IActionResult> Create([Bind("StoreID,StoreName,StoreCity,StoreStreet,StoresPhoneNumber,Latitude,Longitude")] Store store)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace ComputerGamesShop.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("StoreID,StoreName,StoreCity,StoreStreet,StoresPhoneNumber")] Store store)
+        public async Task<IActionResult> Edit(int id, [Bind("StoreID,StoreName,StoreCity,StoreStreet,StoresPhoneNumber,Latitude,Longitude")] Store store)
         {
             if (id != store.StoreID)
             {
@@ -147,6 +147,12 @@ namespace ComputerGamesShop.Controllers
         private bool StoreExists(int id)
         {
             return _context.Store.Any(e => e.StoreID == id);
+        }
+
+        [HttpGet("/api/stores")]
+        public async Task<JsonResult> AddToWatchList()
+        {
+            return Json(new { stores = await _context.Store.ToListAsync() });
         }
     }
 }

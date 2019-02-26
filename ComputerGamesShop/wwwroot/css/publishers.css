@@ -7,12 +7,12 @@
 }
 
     .publishers-result-list li {
-        background-color: #f4feff;
+        background-color: whitesmoke;
         padding-top: 0.5rem;
         padding-bottom: 0.5rem;
         border-radius: 30px;
         border: groove;
-        border-color: #b3ffff;
+        border-color: #ffff99;
     }
         .publishers-result-list li img {
             max-height: 100%;

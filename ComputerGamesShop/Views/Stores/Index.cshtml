@@ -3,29 +3,34 @@
 @{
     ViewData["Title"] = "Stores";
 }
+<form class="form-inline">
+    <div class="form-group">
+        <div class="stores-list-div" style="width:50%">
+            <ul class="list-group list-group-flush">
+                @foreach (var store in Model)
+                {
+                    <li class="list-group-item" style="padding-left:10%">
+                        <h6 class="store-location">
+                            <span class="store-city">@store.StoreCity</span> -
+                            <span class="store-street">@store.StoreStreet</span>
+                        </h6>
+                        <span> Tel: @store.StoresPhoneNumber</span>
 
-<div class="stores-list col-md-4">
-    <ul class="list-group list-group-flush">
-        @foreach (var store in Model)
-        {
-            <li class="list-group-item">
-                <h4 class="store-name">@store.StoreName</h4>
-                <br />
-                <h6 class="store-location">
-                    <span class="store-city">@store.StoreCity</span> -
-                    <span class="store-street">@store.StoreStreet</span>
-                </h6>
-                <span> Tel: @store.StoresPhoneNumber</span>
+                    </li>
+                }
+            </ul>
 
-            </li>
-        }
-    </ul>
-
-</div>
-<div class="google-map col-md-8">
-
-</div>
+        </div>
+        <div id="mapid"></div>
+    </div>
+</form>
 <script type="text/javascript" src="~/lib/jquery/dist/jquery.js"></script>
 <script src="~/js/stores.js"></script>
+<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+        integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+        crossorigin=""></script>
 <link rel="stylesheet" href="~/css/stores.css" />
 <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+      integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+      crossorigin="" />

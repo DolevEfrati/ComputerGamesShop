@@ -12,10 +12,14 @@ namespace ComputerGamesShop.Data.Seed
     {
         public static List<Store> stores = new List<Store>
         {
-            new Store {StoreID = 1, StoreCity= "Tel Aviv-yafo", StoreName = "City of games", StoresPhoneNumber = "03-4678953", StoreStreet = "HaKirya"},
-            new Store {StoreID = 2, StoreCity= "Jerusalem", StoreName = "City of games", StoresPhoneNumber = "09-7895034", StoreStreet = "Derech Namir 34"},
-            new Store {StoreID = 3, StoreCity= "Ramat Gan", StoreName = "City of games", StoresPhoneNumber = "03-6457890", StoreStreet = "Eli Wizel 7"},
-            new Store {StoreID = 4, StoreCity= "Eilat", StoreName = "City of games", StoresPhoneNumber = "09-8765942", StoreStreet = "La Guardiya 32"}
+            new Store {StoreID = 1, StoreCity= "Tel Aviv-yafo", StoreName = "City of games", StoresPhoneNumber = "03-4678953",
+                       StoreStreet = " Ibn Gabirol 95", Latitude = "32.085514", Longitude="34.781628"},
+            new Store {StoreID = 2, StoreCity= "Jerusalem", StoreName = "City of games", StoresPhoneNumber = "09-7895034",
+                       StoreStreet = "Yosef Schwartz 1", Latitude = "31.785939", Longitude="35.212757"},
+            new Store {StoreID = 3, StoreCity= "Nahariyya", StoreName = "City of games", StoresPhoneNumber = "03-6457890",
+                       StoreStreet = "Bialik 33", Latitude = "33.013356", Longitude="35.094909"},
+            new Store {StoreID = 4, StoreCity= "Eilat", StoreName = "City of games", StoresPhoneNumber = "09-8765942",
+                       StoreStreet = "Hasatat 20", Latitude = "29.566021", Longitude="34.959627"}
         };
 
         public static void InitialStores(IServiceProvider serviceProvider)

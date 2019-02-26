@@ -21,7 +21,7 @@ namespace ComputerGamesShop.Models
         [Required(ErrorMessage = "Required field")]
         public string StoreCity { get; set; }
 
-        [Display(Name = "Adress")]
+        [Display(Name = "Address")]
         [Required(ErrorMessage = "Required field")]
         public string StoreStreet { get; set; }
 
@@ -35,6 +35,14 @@ namespace ComputerGamesShop.Models
 
         [Display(Name = "Phone Number")]
         public string StoresPhoneNumber { get; set; }
+
+        [Display(Name = "Latitude")]
+        [Required(ErrorMessage = "Required field")]
+        public string Latitude { get; set; }
+
+        [Display(Name = "Longitude")]
+        [Required(ErrorMessage = "Required field")]
+        public string Longitude { get; set; }
 
         #endregion
     }
