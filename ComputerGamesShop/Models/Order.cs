@@ -35,9 +35,9 @@ namespace ComputerGamesShop.Models
             get
             {
                 var total = 0;
-                foreach (var game in this.Games)
+                foreach (var orderItem in this.OrderItems)
                 {
-                    total += (int)game.Price;
+                    total += (int)orderItem.Game.Price;
                 }
                 return total;
             }
@@ -46,7 +46,7 @@ namespace ComputerGamesShop.Models
 
         #region Navigate Properties
 
-        public virtual ICollection<Game> Games { get; set; }
+        public virtual ICollection<OrderItems> OrderItems { get; set; }
 
         #endregion
 
@@ -54,7 +54,7 @@ namespace ComputerGamesShop.Models
 
         public Order()
         {
-            this.Games = new List<Game>();
+            this.OrderItems = new List<OrderItems>();
         }
 
         # endregion

@@ -11,9 +11,10 @@ using System;
 namespace ComputerGamesShop.Migrations
 {
     [DbContext(typeof(ComputerGamesShopContext))]
-    partial class ComputerGamesShopContextModelSnapshot : ModelSnapshot
+    [Migration("20190227204241_orderItems")]
+    partial class orderItems
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
