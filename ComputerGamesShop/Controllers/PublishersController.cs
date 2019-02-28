@@ -73,10 +73,13 @@ namespace ComputerGamesShop.Controllers
             }
 
             var publisher = await _context.Publisher.SingleOrDefaultAsync(m => m.ID == id);
+
             if (publisher == null)
             {
                 return NotFound();
             }
+            ViewData["GenreEnum"] = new SelectList(Enum.GetValues(typeof(Genre)));
+
             return View(publisher);
         }
 

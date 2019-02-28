@@ -32,13 +32,6 @@ namespace ComputerGamesShop.Controllers
             return View();
         }
 
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
-
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
@@ -76,6 +69,34 @@ namespace ComputerGamesShop.Controllers
             HttpContext.Session.Remove(Globals.USER_SESSION_KEY);
 
             return View("Index");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Statistics()
+        {
+            var orderPerStore = await _context.Order
+                .GroupBy(p => p.Store.DisplayName)
+                .Select(x => new { name = x.Key, count = x.Count() })
+                .ToListAsync();
+
+            var gamesPerPublisher = await _context.Game
+                .GroupBy(p => p.Publisher.Name)
+                .Select(x => new { name = x.Key, count = x.Count() })
+                .ToListAsync();
+
+            var results = new
+            {
+                items = new[] { orderPerStore, gamesPerPublisher }
+            };
+
+            return Json(results);
+        }
+
+        // GET: /statistic
+        [Route("statistics")]
+        public IActionResult getViewStatistics()
+        {
+            return View("Statistics");
         }
     }
 }

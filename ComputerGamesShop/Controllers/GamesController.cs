@@ -32,6 +32,23 @@ namespace ComputerGamesShop.Controllers
             return View(await computerGamesShopContext.ToListAsync());
         }
 
+        // POST Games/Filter
+        [HttpPost]
+        public async Task<IActionResult> Filter(GameQuery query)
+        {
+            bool isMulti = query.Type.Equals("Yes");
+            ViewBag.CurrentPrice = query.Price;
+            ViewBag.MaxPrice = _context.Game.Select(x => x.Price).Max();
+
+            var computerGamesShopContext = _context.Game.Where((Game game) =>
+                game.Price <= query.Price &&
+                (query.Text == null || game.Title.Contains(query.Text)) &&
+                (query.Type.Equals("Both") || game.IsMultiplayer == isMulti))
+                .Include(g => g.Publisher);
+
+            return View("index", await computerGamesShopContext.ToListAsync());
+        }
+
         // GET: Games/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -89,6 +106,8 @@ namespace ComputerGamesShop.Controllers
                 return NotFound();
             }
             ViewData["PublisherID"] = new SelectList(_context.Set<Publisher>(), "ID", "Name", game.PublisherID);
+            ViewData["GenreEnum"] =  new SelectList(Enum.GetValues(typeof(Genre)));
+
             return View(game);
         }
 
