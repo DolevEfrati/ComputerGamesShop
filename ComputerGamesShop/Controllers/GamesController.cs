@@ -106,6 +106,8 @@ namespace ComputerGamesShop.Controllers
                 return NotFound();
             }
             ViewData["PublisherID"] = new SelectList(_context.Set<Publisher>(), "ID", "Name", game.PublisherID);
+            ViewData["GenreEnum"] =  new SelectList(Enum.GetValues(typeof(Genre)));
+
             return View(game);
         }
 
