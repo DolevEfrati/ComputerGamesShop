@@ -14,3 +14,25 @@
         border: groove;
         border-color: #ffff99;
     }
+
+.search-nav {
+    background-color: #e2e2e2;
+    padding: 10px 20px;
+    border-radius: 9px;
+    box-shadow: 1px 1px 1px #d0d0d0;
+}
+
+.radio-group {
+    display: flex;
+    align-items: center;
+    margin: 0 8px;
+    justify-content: space-between;
+    width: 150px;
+}
+
+.search-container {
+    margin: 25px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
