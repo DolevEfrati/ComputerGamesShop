@@ -9,47 +9,23 @@ using ComputerGamesShop.Models;
 
 namespace ComputerGamesShop.Controllers
 {
-    public enum MULTIPLAYER_OPTIONS
-    {
-        yes,
-        no
-    };
-
-    public class GamesController : Controller
+    public class OrderItemsController : Controller
     {
         private readonly ComputerGamesShopContext _context;
 
-        public GamesController(ComputerGamesShopContext context)
+        public OrderItemsController(ComputerGamesShopContext context)
         {
             _context = context;
         }
 
-        // GET: Games
+        // GET: OrderItems
         public async Task<IActionResult> Index()
         {
-            var computerGamesShopContext = _context.Game.Include(g => g.Publisher);
-            ViewBag.MaxPrice = _context.Game.Select(x => x.Price).Max();
+            var computerGamesShopContext = _context.OrderItems.Include(o => o.Game).Include(o => o.Order);
             return View(await computerGamesShopContext.ToListAsync());
         }
 
-        // POST Games/Filter
-        [HttpPost]
-        public async Task<IActionResult> Filter(GameQuery query)
-        {
-            bool isMulti = query.Type.Equals("Yes");
-            ViewBag.CurrentPrice = query.Price;
-            ViewBag.MaxPrice = _context.Game.Select(x => x.Price).Max();
-
-            var computerGamesShopContext = _context.Game.Where((Game game) =>
-                game.Price <= query.Price &&
-                (query.Text == null || game.Title.Contains(query.Text)) &&
-                (query.Type.Equals("Both") || game.IsMultiplayer == isMulti))
-                .Include(g => g.Publisher);
-
-            return View("index", await computerGamesShopContext.ToListAsync());
-        }
-
-        // GET: Games/Details/5
+        // GET: OrderItems/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -57,42 +33,45 @@ namespace ComputerGamesShop.Controllers
                 return NotFound();
             }
 
-            var game = await _context.Game
-                .Include(g => g.Publisher)
+            var orderItems = await _context.OrderItems
+                .Include(o => o.Game)
+                .Include(o => o.Order)
                 .SingleOrDefaultAsync(m => m.ID == id);
-            if (game == null)
+            if (orderItems == null)
             {
                 return NotFound();
             }
 
-            return View(game);
+            return View(orderItems);
         }
 
-        // GET: Games/Create
+        // GET: OrderItems/Create
         public IActionResult Create()
         {
-            ViewData["PublisherID"] = new SelectList(_context.Set<Publisher>(), "ID", "Name");
+            ViewData["gameId"] = new SelectList(_context.Game, "ID", "Description");
+            ViewData["orderId"] = new SelectList(_context.Order, "OrderID", "OrderID");
             return View();
         }
 
-        // POST: Games/Create
+        // POST: OrderItems/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Title,Description,Genre,Price,Image,PublisherID,IsMultiplayer,ReleaseDate")] Game game)
+        public async Task<IActionResult> Create([Bind("ID,orderId,gameId")] OrderItems orderItems)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(game);
+                _context.Add(orderItems);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PublisherID"] = new SelectList(_context.Set<Publisher>(), "ID", "Name", game.PublisherID);
-            return View(game);
+            ViewData["gameId"] = new SelectList(_context.Game, "ID", "Description", orderItems.gameId);
+            ViewData["orderId"] = new SelectList(_context.Order, "OrderID", "OrderID", orderItems.orderId);
+            return View(orderItems);
         }
 
-        // GET: Games/Edit/5
+        // GET: OrderItems/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -100,25 +79,24 @@ namespace ComputerGamesShop.Controllers
                 return NotFound();
             }
 
-            var game = await _context.Game.SingleOrDefaultAsync(m => m.ID == id);
-            if (game == null)
+            var orderItems = await _context.OrderItems.SingleOrDefaultAsync(m => m.ID == id);
+            if (orderItems == null)
             {
                 return NotFound();
             }
-            ViewData["PublisherID"] = new SelectList(_context.Set<Publisher>(), "ID", "Name", game.PublisherID);
-            ViewData["GenreEnum"] =  new SelectList(Enum.GetValues(typeof(Genre)));
-
-            return View(game);
+            ViewData["gameId"] = new SelectList(_context.Game, "ID", "Description", orderItems.gameId);
+            ViewData["orderId"] = new SelectList(_context.Order, "OrderID", "OrderID", orderItems.orderId);
+            return View(orderItems);
         }
 
-        // POST: Games/Edit/5
+        // POST: OrderItems/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Title,Description,Genre,Price,Image,PublisherID,IsMultiplayer,ReleaseDate")] Game game)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,orderId,gameId")] OrderItems orderItems)
         {
-            if (id != game.ID)
+            if (id != orderItems.ID)
             {
                 return NotFound();
             }
@@ -127,12 +105,12 @@ namespace ComputerGamesShop.Controllers
             {
                 try
                 {
-                    _context.Update(game);
+                    _context.Update(orderItems);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!GameExists(game.ID))
+                    if (!OrderItemsExists(orderItems.ID))
                     {
                         return NotFound();
                     }
@@ -143,11 +121,12 @@ namespace ComputerGamesShop.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PublisherID"] = new SelectList(_context.Set<Publisher>(), "ID", "Name", game.PublisherID);
-            return View(game);
+            ViewData["gameId"] = new SelectList(_context.Game, "ID", "Description", orderItems.gameId);
+            ViewData["orderId"] = new SelectList(_context.Order, "OrderID", "OrderID", orderItems.orderId);
+            return View(orderItems);
         }
 
-        // GET: Games/Delete/5
+        // GET: OrderItems/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -155,31 +134,32 @@ namespace ComputerGamesShop.Controllers
                 return NotFound();
             }
 
-            var game = await _context.Game
-                .Include(g => g.Publisher)
+            var orderItems = await _context.OrderItems
+                .Include(o => o.Game)
+                .Include(o => o.Order)
                 .SingleOrDefaultAsync(m => m.ID == id);
-            if (game == null)
+            if (orderItems == null)
             {
                 return NotFound();
             }
 
-            return View(game);
+            return View(orderItems);
         }
 
-        // POST: Games/Delete/5
+        // POST: OrderItems/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var game = await _context.Game.SingleOrDefaultAsync(m => m.ID == id);
-            _context.Game.Remove(game);
+            var orderItems = await _context.OrderItems.SingleOrDefaultAsync(m => m.ID == id);
+            _context.OrderItems.Remove(orderItems);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool GameExists(int id)
+        private bool OrderItemsExists(int id)
         {
-            return _context.Game.Any(e => e.ID == id);
+            return _context.OrderItems.Any(e => e.ID == id);
         }
     }
 }

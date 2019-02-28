@@ -5,23 +5,32 @@
 
 }
 <div class="container-games">
-    <div class="col-md-7 column-in-center" style="margin: auto; padding-top:25px; padding-bottom:25px;">
-        <form class="form-inline">
-            <div class="form-group">
-                <label for="focusedInput" style="padding-right:3px;">Game's name:</label>
-                <input class="form-control" onkeyup="filterGames()" id="gameNameSearch" type="text" placeholder="Search...">
-
-                <label style="padding-left:15px; padding-right:3px;"> Multiplayer: </label>
-                <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-light">both</button>
-                    <button type="button" class="btn btn-light">yes</button>
-                    <button type="button" class="btn btn-light">no</button>
+    <div class="search-container">
+        <form class="form-inline" method="post" action="/games/filter">
+            <div class="form-group search-nav">
+                <label for="focusedInput" style="margin-right:5px;"><b> Search </b></label>
+                <input class="form-control" name="text" id="gameNameSearch" type="text" placeholder="Text">
+                <label style="padding-left:15px; padding-right:3px;"><b> Multiplayer: </b></label>
+                <div class="btn-group radio-group" role="group">
+                    <input type="radio" name="type" value="Both" checked> Both
+                    <input type="radio" name="type" value="Yes">Yes
+                    <input type="radio" name="type" value="No">No
                 </div>
 
-                <label style="padding-left:8px;"> Price: </label>
+                <label style="padding-left:8px;"> <b> Price:</b> </label>
                 <span id="min" style="padding-left:5px; padding-right:5px;"> 0</span>
-                <input type="range" min="0" max="@ViewBag.MaxPrice" value="@ViewBag.MaxPrice" class="slider" id="Price" onchange="showVal(this.value)" />
-                <span id="max" style="padding-left:5px;">@ViewBag.MaxPrice$</span>
+                @if (ViewBag.CurrentPrice == null)
+    {
+
+            <input type="range" min="0" max="@ViewBag.MaxPrice" value="@ViewBag.MaxPrice" class="slider" id="Price" name="price" onchange="showVal(this.value)" />
+            <span id="max" style="padding-left:5px;">@ViewBag.MaxPrice$</span>
+}
+else
+{
+            <input type="range" min="0" max="@ViewBag.MaxPrice" value="@ViewBag.CurrentPrice" class="slider" id="Price" name="price" onchange="showVal(this.value)" />
+            <span id="max" style="padding-left:5px;">@ViewBag.CurrentPrice$</span>
+}
+                <input type="submit" value="Filter" class="btn btn-default" style="margin-left:5px" />
             </div>
         </form> 
     </div>
@@ -57,12 +66,12 @@
                             {
                                 @if (Globals.isManagerConnected(Context.Session))
                                 {
-                                    <button class="btn" type="submit" form="remove-game-btn" value="@game.ID" style="width:80px; background-color:#ff3333;">delete</button>
-                                    <button class="btn" type="submit" form="edit-game-btn" value="@game.ID" style="width:80px; background-color: #c9c7c5;">edit</button>
+                                <a href="games/delete/@game.ID"><button class="btn" type="submit" form="remove-game-btn" value="@game.ID" style="width:80px; background-color:#ff3333;">delete</button></a>
+                                <a href="games/edit/@game.ID"><button class="btn" type="submit" form="edit-game-btn" value="@game.ID" style="width:80px; background-color: #c9c7c5;">edit</button></a>
                                 }
                                 else
                                 {
-                                    <button class="btn" type="submit" form="add-to-cert-btn" value="@game.ID" style="background-color:#ff8000;">add to cert</button>
+                                <button class="btn" type="submit" form="add-to-cart-btn" value="@game.ID" style="background-color:#ff8000;">add to cart</button>
                                 }
                             }
                         </span>

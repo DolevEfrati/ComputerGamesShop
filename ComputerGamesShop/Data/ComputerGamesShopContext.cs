@@ -23,5 +23,7 @@ namespace ComputerGamesShop.Models
         public DbSet<ComputerGamesShop.Models.Order> Order { get; set; }
 
         public DbSet<ComputerGamesShop.Models.Store> Store { get; set; }
+
+        public DbSet<ComputerGamesShop.Models.OrderItems> OrderItems { get; set; }
     }
 }

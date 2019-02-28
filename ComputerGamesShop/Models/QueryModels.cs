@@ -28,4 +28,11 @@ namespace ComputerGamesShop.Models
         public string lastName;
         public DateTime birthDate;
     }
+
+    public class GameQuery
+    {
+        public string Text { get; set; }
+        public string Type { get; set; }
+        public double Price { get; set; }
+    }
 }
