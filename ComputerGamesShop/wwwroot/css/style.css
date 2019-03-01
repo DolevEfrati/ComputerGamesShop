@@ -94,10 +94,22 @@ ol {
             color: white;
         }
 
+.cart-div {
+    float: right;
+    margin-right: 15px;
+    text-align: center;
+    padding-top: 5px;
+}
+    .cart-div .cart-symbol {
+        color: orange;
+        font-size: 32px;
+        cursor: pointer;
+    }
+
 .main-menu {
     float: right;
     padding-top: 8px;
-    margin-right: 170px;
+    margin-right: 120px;
 }
 
     .main-menu ul {

@@ -59,6 +59,10 @@ namespace ComputerGamesShop.Controllers
                 return Unauthorized();
             HttpContext.Session.SetString(Globals.USER_SESSION_KEY, JsonConvert.SerializeObject(user));
             HttpContext.Session.SetString(Globals.IS_MANAGER_SESSION_KEY, (user.Role == Role.Manager).ToString().ToLower());
+            Globals.setConnectedUser(HttpContext.Session);
+
+            List<Store> stores = await _context.Store.ToListAsync();
+            Globals.setStores(stores);
             return Ok();
         }
 
@@ -67,6 +71,8 @@ namespace ComputerGamesShop.Controllers
         {
             HttpContext.Session.SetString(Globals.IS_MANAGER_SESSION_KEY, "false");
             HttpContext.Session.Remove(Globals.USER_SESSION_KEY);
+            Globals.clearCart();
+            Globals.removeUser(HttpContext.Session);
 
             return View("Index");
         }
