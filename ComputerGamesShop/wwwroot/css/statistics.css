@@ -1,4 +1,6 @@
 ﻿.statistics {
-    width: 50%;
-    margin-left : 25%;
+    display: flex;
+    flex: 1;
+    height: 100%;
+    justify-content: center;
 }
