@@ -24,12 +24,12 @@ namespace ComputerGamesShop
                 var services = scope.ServiceProvider;
                 try
                 {
-                    //SeedPublishers.InitialPublisher(services);
-                    //SeedGames.InitialGames(services);
-                    //SeedStores.InitialStores(services);
-                    //SeedUsers.InitialUsers(services);
-                    //SeedOrders.InitialOrders(services);
-                    //SeedOrdersItems.InitialOrderItems(services);
+                    SeedPublishers.InitialPublisher(services);
+                    SeedGames.InitialGames(services);
+                    SeedStores.InitialStores(services);
+                    SeedUsers.InitialUsers(services);
+                    SeedOrders.InitialOrders(services);
+                    SeedOrdersItems.InitialOrderItems(services);
                 }
                 catch (Exception ex)
                 {

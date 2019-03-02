@@ -1,0 +1,16 @@
+﻿.container-cart-games {
+    overflow: auto;
+}
+
+.games-result-list {
+    margin-top: 2rem;
+}
+
+    .games-result-list li {
+        background-color: whitesmoke;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        border-radius: 30px;
+        border: groove;
+        border-color: #ffff99;
+    }

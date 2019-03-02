@@ -11,8 +11,8 @@ using System;
 namespace ComputerGamesShop.Migrations
 {
     [DbContext(typeof(ComputerGamesShopContext))]
-    [Migration("20190226181105_storesAddress")]
-    partial class storesAddress
+    [Migration("20190302200227_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -36,8 +36,6 @@ namespace ComputerGamesShop.Migrations
 
                     b.Property<bool>("IsMultiplayer");
 
-                    b.Property<int?>("OrderID");
-
                     b.Property<double>("Price");
 
                     b.Property<int>("PublisherID");
@@ -49,8 +47,6 @@ namespace ComputerGamesShop.Migrations
                         .HasMaxLength(45);
 
                     b.HasKey("ID");
-
-                    b.HasIndex("OrderID");
 
                     b.HasIndex("PublisherID");
 
@@ -75,6 +71,24 @@ namespace ComputerGamesShop.Migrations
                     b.HasIndex("StoreID");
 
                     b.ToTable("Order");
+                });
+
+            modelBuilder.Entity("ComputerGamesShop.Models.OrderItems", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("gameId");
+
+                    b.Property<int>("orderId");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("gameId");
+
+                    b.HasIndex("orderId");
+
+                    b.ToTable("OrderItems");
                 });
 
             modelBuilder.Entity("ComputerGamesShop.Models.Publisher", b =>
@@ -160,10 +174,6 @@ namespace ComputerGamesShop.Migrations
 
             modelBuilder.Entity("ComputerGamesShop.Models.Game", b =>
                 {
-                    b.HasOne("ComputerGamesShop.Models.Order")
-                        .WithMany("Games")
-                        .HasForeignKey("OrderID");
-
                     b.HasOne("ComputerGamesShop.Models.Publisher", "Publisher")
                         .WithMany("Games")
                         .HasForeignKey("PublisherID")
@@ -180,6 +190,19 @@ namespace ComputerGamesShop.Migrations
                     b.HasOne("ComputerGamesShop.Models.Store", "Store")
                         .WithMany()
                         .HasForeignKey("StoreID")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("ComputerGamesShop.Models.OrderItems", b =>
+                {
+                    b.HasOne("ComputerGamesShop.Models.Game", "Game")
+                        .WithMany()
+                        .HasForeignKey("gameId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("ComputerGamesShop.Models.Order", "Order")
+                        .WithMany("OrderItems")
+                        .HasForeignKey("orderId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

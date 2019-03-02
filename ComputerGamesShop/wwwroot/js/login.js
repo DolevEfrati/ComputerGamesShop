@@ -10,7 +10,8 @@ $('a').click(function(event){
     });
 
 
-$('#login-btn').click(function(event){
+$('#login-btn').click(function (event) {
+    $('#login-err').text('')
     var isValid = validateForm()
 
     if (isValid) {

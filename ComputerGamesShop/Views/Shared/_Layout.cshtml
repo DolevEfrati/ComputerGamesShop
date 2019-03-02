@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
         <link rel="stylesheet" href="~/css/style.css" />
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -33,6 +34,12 @@
                 }
 
             </div>
+            <div class="cart-div">
+                @if (Globals.isConnectedUser(Context.Session) && !Globals.isManagerConnected(Context.Session))
+                {
+                    <a href="/orderItems" class="cart-symbol fa fa-shopping-cart" style="color: orange; text-decoration: none"></a>
+                }
+            </div>
             <nav class="main-menu">
                 <ul>
                     <li><a href="/">Home</a></li>
@@ -40,6 +47,10 @@
                     <li><a href="/publishers">Publishers</a></li>
                     <li><a href="/stores">Stores</a></li>
                     <li><a href="/statistics">Statistics</a></li>
+                    @*@if (Globals.isConnectedUser(Context.Session) && !Globals.isManagerConnected(Context.Session))
+                    {
+                        <li><i class="fa fa-home" style="color: orange;"></i></li>
+                    }*@
                 </ul>
             </nav>
         </div>
