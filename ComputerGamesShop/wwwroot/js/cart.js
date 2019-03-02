@@ -2,7 +2,19 @@
     if (document.getElementById("games-list").getElementsByTagName("li").length == 0) {
         document.getElementById("confirmBtn").disabled = true;
     }
+
+    var sum = 0
+    $('.price').each(function (idx, p) {
+        sum += parseFloat(p.innerText.split('$')[0])
+    })
+    $('#sum').html(sum + '$')
+    $('#currency-btn').html( $('#currency-btn').text() + ' ' + geoplugin_currencySymbol())
 });
+
+$('#currency-btn').click(function () {
+    $('#sum').html(geoplugin_currencyConverter($('#sum').text().split('$')[0]))
+    $('#currency-btn').hide()
+})
 
 function filterGames(condition) {
     var input, filter, ul, li, h4, i, txtValue;

@@ -1,6 +1,13 @@
 ﻿@model IEnumerable<ComputerGamesShop.Models.Game>
 
 <div class="container-cart-games">
+    <div class="cart-header col-md-8">
+        <h2>Cart</h2>
+        <div class="sum-header-right">
+            <button id="currency-btn">Show in Local currnecy</button>
+            <p class="sum">sum: <span id="sum"></span></p>
+        </div>
+    </div>
     <div class="col-md-8" style="margin: auto; margin-top:0;">
         <form class="form-inline" style="min-height:80px;">
             <input class="form-control" onkeyup="filterGames()" id="gameNameSearch"
