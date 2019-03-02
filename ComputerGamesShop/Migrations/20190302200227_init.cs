@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace ComputerGamesShop.Migrations
 {
-    public partial class start : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -31,6 +31,8 @@ namespace ComputerGamesShop.Migrations
                 {
                     StoreID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Latitude = table.Column<string>(nullable: false),
+                    Longitude = table.Column<string>(nullable: false),
                     StoreCity = table.Column<string>(nullable: false),
                     StoreName = table.Column<string>(nullable: false),
                     StoreStreet = table.Column<string>(nullable: false),
@@ -64,6 +66,32 @@ namespace ComputerGamesShop.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Game",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Description = table.Column<string>(maxLength: 400, nullable: false),
+                    Genre = table.Column<int>(nullable: false),
+                    Image = table.Column<string>(nullable: true),
+                    IsMultiplayer = table.Column<bool>(nullable: false),
+                    Price = table.Column<double>(nullable: false),
+                    PublisherID = table.Column<int>(nullable: false),
+                    ReleaseDate = table.Column<DateTime>(nullable: false),
+                    Title = table.Column<string>(maxLength: 45, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Game", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Game_Publisher_PublisherID",
+                        column: x => x.PublisherID,
+                        principalTable: "Publisher",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Order",
                 columns: table => new
                 {
@@ -91,42 +119,30 @@ namespace ComputerGamesShop.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Game",
+                name: "OrderItems",
                 columns: table => new
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Description = table.Column<string>(maxLength: 400, nullable: false),
-                    Genre = table.Column<int>(nullable: false),
-                    Image = table.Column<string>(nullable: true),
-                    IsMultiplayer = table.Column<bool>(nullable: false),
-                    OrderID = table.Column<int>(nullable: true),
-                    Price = table.Column<double>(nullable: false),
-                    PublisherID = table.Column<int>(nullable: false),
-                    ReleaseDate = table.Column<DateTime>(nullable: false),
-                    Title = table.Column<string>(maxLength: 45, nullable: false)
+                    gameId = table.Column<int>(nullable: false),
+                    orderId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Game", x => x.ID);
+                    table.PrimaryKey("PK_OrderItems", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Game_Order_OrderID",
-                        column: x => x.OrderID,
-                        principalTable: "Order",
-                        principalColumn: "OrderID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Game_Publisher_PublisherID",
-                        column: x => x.PublisherID,
-                        principalTable: "Publisher",
+                        name: "FK_OrderItems_Game_gameId",
+                        column: x => x.gameId,
+                        principalTable: "Game",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_OrderItems_Order_orderId",
+                        column: x => x.orderId,
+                        principalTable: "Order",
+                        principalColumn: "OrderID",
+                        onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Game_OrderID",
-                table: "Game",
-                column: "OrderID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Game_PublisherID",
@@ -142,10 +158,23 @@ namespace ComputerGamesShop.Migrations
                 name: "IX_Order_StoreID",
                 table: "Order",
                 column: "StoreID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrderItems_gameId",
+                table: "OrderItems",
+                column: "gameId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrderItems_orderId",
+                table: "OrderItems",
+                column: "orderId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "OrderItems");
+
             migrationBuilder.DropTable(
                 name: "Game");
 

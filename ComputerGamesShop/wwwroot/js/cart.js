@@ -44,12 +44,15 @@ function saveOrder() {
         type: 'POST',
         url: "/api/saveOrder",
         data: { storeId: storeId },
-        success: function () {
+        success: (function () {
             alert('done');
             location.href = '/';
-        },
-        error: function (err, status, reason) {
+        }),
+        error: (function (xhr, status) {
             alert(status);
+        }),
+        complete: function (response, textStatus) {
+            return alert("Hey: " + textStatus);
         }
     });
 }

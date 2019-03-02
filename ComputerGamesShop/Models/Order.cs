@@ -13,6 +13,9 @@ namespace ComputerGamesShop.Models
         #region Properties
 
         [Key]
+        public int ID;
+
+        [Required(ErrorMessage = "Required field")]
         public int OrderID { get; set; }
 
         [ForeignKey("Customer")]

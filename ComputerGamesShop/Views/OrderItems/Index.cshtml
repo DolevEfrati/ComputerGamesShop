@@ -1,12 +1,6 @@
 ﻿@model IEnumerable<ComputerGamesShop.Models.Game>
 
 <div class="container-cart-games">
-    <div style="margin: auto;">
-        <p style="text-align:center; padding-top: 10px; margin-bottom: 0px; margin-top: 8px;
-                    font-family: cursive; font-size: xx-large;  color:coral;">
-            <b>Order No. @ViewBag.currentOrderId</b>
-        </p>
-    </div>
     <div class="col-md-8" style="margin: auto; margin-top:0;">
         <form class="form-inline" style="min-height:80px;">
             <input class="form-control" onkeyup="filterGames()" id="gameNameSearch"

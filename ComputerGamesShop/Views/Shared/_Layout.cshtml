@@ -37,7 +37,7 @@
             <div class="cart-div">
                 @if (Globals.isConnectedUser(Context.Session) && !Globals.isManagerConnected(Context.Session))
                 {
-                    <a href="/orderItems" class="cart-symbol fa fa-shopping-cart" style="color: orange;"></a>
+                    <a href="/orderItems" class="cart-symbol fa fa-shopping-cart" style="color: orange; text-decoration: none"></a>
                 }
             </div>
             <nav class="main-menu">

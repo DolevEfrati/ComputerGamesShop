@@ -194,22 +194,22 @@ namespace ComputerGamesShop.Controllers
         public IActionResult SaveOrder(int storeId)
         {
             var currentId = getCurrentOrderId();
+
+            // create order's items list
+            List<OrderItems> orderItemsToSave = new List<OrderItems>();
+            foreach (int gameId in Globals.getCartList())
+            {
+                orderItemsToSave.Add(new OrderItems { orderId = currentId, gameId = gameId});
+            }
+
             // save order
             Order currentOrderData = new Order
             {
                 CustomerId = Globals.getConnectedUser()["UserID"].ToObject<int>(),
                 StoreID = storeId,
                 OrderDate = DateTime.Now,
-                OrderItems = new List<OrderItems>()
+                OrderItems = orderItemsToSave
             };
-            
-            // save order's items
-            List<OrderItems> orderItemsToSave = new List<OrderItems>();
-
-            foreach (int gameId in Globals.getCartList())
-            {
-                currentOrderData.OrderItems.Add(new OrderItems { orderId = currentId, gameId = gameId});
-            }
             _context.Order.Add(currentOrderData);
             _context.SaveChanges();
 
