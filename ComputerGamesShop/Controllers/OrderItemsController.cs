@@ -21,8 +21,22 @@ namespace ComputerGamesShop.Controllers
         // GET: OrderItems
         public async Task<IActionResult> Index()
         {
-            var computerGamesShopContext = _context.OrderItems.Include(o => o.Game).Include(o => o.Order);
+            var computerGamesShopContext = _context.Game.Where(p => Globals.getCartList().Contains(p.ID));
+            ViewBag.CurrentOrderId = getCurrentOrderId();
             return View(await computerGamesShopContext.ToListAsync());
+        }
+
+        public int getCurrentOrderId()
+        {
+            var MaxOrderID = 0;
+            try
+            {
+                MaxOrderID = _context.Order.Select(x => x.OrderID).Max();
+            }
+            catch // order table is empty
+            {
+            }
+            return (MaxOrderID + 1);
         }
 
         // GET: OrderItems/Details/5
@@ -160,6 +174,52 @@ namespace ComputerGamesShop.Controllers
         private bool OrderItemsExists(int id)
         {
             return _context.OrderItems.Any(e => e.ID == id);
+        }
+
+        [HttpPost("/api/addToCart")]
+        public async Task<IActionResult> AddToCart(int gameId)
+        {
+            Globals.addToCart(gameId);
+            return Ok();
+        }
+
+        [HttpPost("/api/deletefromCart")]
+        public async Task<IActionResult> DeletefromCart(int gameId)
+        {
+            Globals.deleteFromCart(gameId);
+            return Ok();
+        }
+        
+        [HttpPost("/api/saveOrder")]
+        public IActionResult SaveOrder(int storeId)
+        {
+            var currentId = getCurrentOrderId();
+
+            // create order's items list
+            List<OrderItems> orderItemsToSave = new List<OrderItems>();
+            foreach (int gameId in Globals.getCartList())
+            {
+                orderItemsToSave.Add(new OrderItems { orderId = currentId, gameId = gameId});
+            }
+
+            // save order
+            Order currentOrderData = new Order
+            {
+                CustomerId = Globals.getConnectedUser()["UserID"].ToObject<int>(),
+                StoreID = storeId,
+                OrderDate = DateTime.Now,
+                OrderItems = orderItemsToSave
+            };
+            _context.Order.Add(currentOrderData);
+            _context.SaveChanges();
+
+            // update order id
+            ViewBag.CurrentOrderId = ViewBag.CurrentOrderId + 1;
+
+            // clean cart
+            Globals.clearCart();
+
+            return Ok();
         }
     }
 }

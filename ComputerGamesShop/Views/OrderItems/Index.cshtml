@@ -1,41 +1,57 @@
-﻿@model IEnumerable<ComputerGamesShop.Models.OrderItems>
+﻿@model IEnumerable<ComputerGamesShop.Models.Game>
 
-@{
-    ViewData["Title"] = "Index";
-}
+<div class="container-cart-games">
+    <div class="col-md-8" style="margin: auto; margin-top:0;">
+        <form class="form-inline" style="min-height:80px;">
+            <input class="form-control" onkeyup="filterGames()" id="gameNameSearch"
+                   type="text" placeholder="Search..." style="width: 30%; margin: auto;">
+            <select class="form-control" id="storesList" style="width: 45%">
+            @foreach (Store store in Globals.getStores())
+            {
+                <option value="@store.StoreID">@store.DisplayName</option>
+            }
+            </select>
+            <input id="confirmBtn" class="btn btn-warning" value="confirm" onclick="saveOrder()" style="width: 20%; margin: auto;">
+        </form>
 
-<h2>Index</h2>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Game)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Order)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Game.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Order.OrderID)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    </div>
+    <ul id="games-list" class="games-result-list col-md-8 column-in-center" style="list-style-type: none; margin: auto;">
+        @foreach (var game in Model)
+        {
+            <li class="row" style="margin-bottom:5%;">
+                <div class="col-md-3 game-image">
+                    <img src="@game.Image" style="width:80%; height:200px; border-radius: 8px;" />
+                </div>
+                <div class="col-md-6 game-title" style="height:200px">
+                    <h4 class="title-string">
+                        @game.Title
+                    </h4>
+                    @if (game.IsMultiplayer)
+                    {
+                        <h6>Multiplayer</h6>
+                    }
+                    else
+                    {
+                        <h6>Single player</h6>
+                    }
+                    <p>@game.Description</p>
+                </div>
+                <div class="col-md-3" style="height:200px">
+                    <div class="game-options">
+                        <h3 class="price">
+                            @game.Price$
+                        </h3>
+                        <button class="btn" type="submit" form="remove-from-cart-btn" value="@game.ID" style="width:80px; background-color:#ff3333;"
+                                onclick="deleteGamefromCart(@game.ID)">
+                            remove
+                        </button>
+                    </div>
+                </div>
+            </li>
+        }
+    </ul>
+</div>
+<script type="text/javascript" src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/js/cart.js"></script>
+<link rel="stylesheet" href="~/css/cart.css" />
+<link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.css" />
