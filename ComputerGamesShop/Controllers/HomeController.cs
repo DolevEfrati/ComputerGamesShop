@@ -104,5 +104,12 @@ namespace ComputerGamesShop.Controllers
         {
             return View("Statistics");
         }
+
+        // GET: /statistic
+        [Route("recommendation")]
+        public IActionResult getViewRecommendation()
+        {
+            return View("Recommendation");
+        }
     }
 }
