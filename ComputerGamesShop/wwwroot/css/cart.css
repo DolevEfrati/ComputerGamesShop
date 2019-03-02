@@ -14,3 +14,28 @@
         border: groove;
         border-color: #ffff99;
     }
+
+.cart-header {
+    margin: auto;
+    margin-top: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0 0;
+}
+
+.sum {
+    font-size: 1.8em;
+    margin-bottom: 0;
+    color: black;
+    font-weight: 400;
+}
+
+.sum-header-right {
+    display: flex;
+}
+
+#currency-btn {
+    height: 30px;
+    align-self: center;
+    margin: 0 20px;
+}

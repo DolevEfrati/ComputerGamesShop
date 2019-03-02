@@ -8,44 +8,42 @@
 <h2 class="statistics-label">Statistics</h2>
 <div class="statistics">
     <script>
-        var salesData = [
-            { label: "Basic", color: "#3366CC" },
-            { label: "Plus", color: "#DC3912" },
-            { label: "Lite", color: "#FF9900" },
-            { label: "Elite", color: "#109618" },
-            { label: "Delux", color: "#990099" }
-        ];
+        $.ajax({
+            type: 'GET',
+            url: "/home/statistics",
+            success: function (data) {
+                gradPie.drawChartBar("bars", data.items[1], 500, 500, "Sales per Game");
+                gradPie.draw("salespie", colorize(data.items[0]), 800, 200, 160, "Sales per Shop");
+            },
+            error: function (xhr, status) {
+                alert(status);
+            }
+        });
+
 
         var svg = d3.select(".statistics").append("svg").attr("width", 1000).attr("height", 700);
 
         svg.append("g").attr("id", "salespie");
-        svg.append("g").attr("id", "quotespie");
         svg.append("g").attr("id", "bars");
 
-        var bardata = [{
-            game: 'game1',
-            amount: 4
-        }, {
-            game: 'game2',
-            amount: 5
-        }, {
-            game: 'game4',
-            amount: 3
-        }]
-
-        gradPie.drawChartBar("bars", bardata, 500, 500, 0, 200);
-
-        gradPie.draw("salespie", randomData(), 800, 200, 160);
-        //gradPie.draw("quotespie", randomData(), 500, 200, 100);
 
         function changeData() {
             gradPie.transition("salespie", randomData(), 160);
             gradPie.transition("quotespie", randomData(), 100);
         }
 
-        function randomData() {
-            return salesData.map(function (d) {
-                return { label: d.label, value: 1000 * Math.random(), color: d.color };
+        function colorize(data) {
+            var colors = [
+                "#3366CC",
+                "#DC3912",
+                "#FF9900",
+                "#109618",
+                "#990099"
+            ]
+            var i = 0
+            return data.map(function (d) {
+                i++
+                return { label: d.name, value: d.count, color: colors[i % colors.length] };
             });
         }
     </script>

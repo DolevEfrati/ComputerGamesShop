@@ -21,7 +21,7 @@
             .attr("stop-opacity", 1);
     }
 
-    gradPie.draw = function (id, data, cx, cy, r) {
+    gradPie.draw = function (id, data, cx, cy, r, text) {
         var gPie = d3.select("#" + id).append("g")
             .attr("transform", "translate(" + cx + "," + cy + ")");
 
@@ -54,13 +54,13 @@
         .attr("y", cy) 
         .style("font-size", "16px") 
         .style("text-decoration", "underline")  
-        .text("Value vs Date Graph");
+        .text(text);
     }
 
-    gradPie.drawChartBar = function(id, data, cx, cy) {
+    gradPie.drawChartBar = function(id, data, cx, cy, text) {
         var margin = {top: 20, right: 20, bottom: 70, left: 40},
             width = 600 - margin.left - margin.right,
-            height = 450 - margin.top - margin.bottom;
+            height = 420 - margin.top - margin.bottom;
         var x = d3.scale.ordinal().rangeRoundBands([0, width], .05);
 
         var y = d3.scale.linear().range([height, 0]);
@@ -90,8 +90,8 @@
             .attr("transform", 
                   "translate(" + margin.left + "," + margin.top + ")")
 
-          x.domain(data.map(function(d) { return d.game; }));
-          y.domain([0, d3.max(data, function(d) { return d.amount; })]);
+          x.domain(data.map(function(d) { return d.name; }));
+          y.domain([0, d3.max(data, function(d) { return d.count; })]);
 
           svg.append("g")
               .attr("class", "x axis")
@@ -111,17 +111,17 @@
               .attr("y", 6)
               .attr("dy", ".71em")
               .style("text-anchor", "end")
-              .text("Value ($)");
+              .text(text + " - Count");
 
           svg.selectAll("bar")
               .data(data)
             .enter().append("rect")
               .style("fill", "steelblue")
-              .attr("x", function(d) { return x(d.game); })
+              .attr("x", function(d) { return x(d.name); })
               .attr("width", x.rangeBand())
-              .attr("y", function(d) { return y(d.amount); })
-              .attr("height", function(d) { return height - y(d.amount); })
-              .on("mouseover", function(d){tooltip.text(d.game); return tooltip.style("visibility", "visible");})
+              .attr("y", function(d) { return y(d.count); })
+              .attr("height", function(d) { return height - y(d.count); })
+              .on("mouseover", function(d){tooltip.text(d.name); return tooltip.style("visibility", "visible");})
               .on("mousemove", function(){return tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
               .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
     }
