@@ -4,10 +4,11 @@
 }
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="~/js/statistics.js"></script>
+
 <h2 class="statistics-label">Statistics</h2>
 <div class="statistics">
     <script>
-var salesData = [
+        var salesData = [
             { label: "Basic", color: "#3366CC" },
             { label: "Plus", color: "#DC3912" },
             { label: "Lite", color: "#FF9900" },
@@ -24,15 +25,15 @@ var salesData = [
         var bardata = [{
             game: 'game1',
             amount: 4
-        },{
+        }, {
             game: 'game2',
             amount: 5
-        },{
+        }, {
             game: 'game4',
             amount: 3
         }]
 
-        gradPie.drawChartBar("bars" ,bardata,  500, 500, 0, 200);
+        gradPie.drawChartBar("bars", bardata, 500, 500, 0, 200);
 
         gradPie.draw("salespie", randomData(), 800, 200, 160);
         //gradPie.draw("quotespie", randomData(), 500, 200, 100);
@@ -46,26 +47,7 @@ var salesData = [
             return salesData.map(function (d) {
                 return { label: d.label, value: 1000 * Math.random(), color: d.color };
             });
-        }</script>
+        }
+    </script>
 </div>
 <link rel="stylesheet" href="~/css/statistics.css" />
-
-@*bar chart*@ 
-<style>
-    .statistics-label {
-        flex: 1;
-        text-align: center;
-        margin: 20px 0;
-    }
-
-    .axis {
-        font: 10px sans-serif;
-    }
-
-        .axis path,
-        .axis line {
-            fill: none;
-            stroke: #000;
-            shape-rendering: crispEdges;
-        }
-</style>
