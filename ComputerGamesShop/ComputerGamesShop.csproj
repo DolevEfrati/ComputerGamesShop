@@ -41,4 +41,8 @@
     <None Include="wwwroot\images\publisher\ubisoft.png" />
     <None Include="wwwroot\images\publisher\valve.jpg" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\video\" />
+  </ItemGroup>
 </Project>
