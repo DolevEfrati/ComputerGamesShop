@@ -57,6 +57,10 @@
             </li>
         }
     </ul>
+    @if (!Globals.getCartList().Any())
+    {
+        <h4 style="color: red; text-align:center;">Cart is empty</h4>
+    }
 </div>
 <script type="text/javascript" src="~/lib/jquery/dist/jquery.js"></script>
 <script src="~/js/cart.js"></script>

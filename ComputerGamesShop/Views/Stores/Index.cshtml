@@ -9,18 +9,27 @@
             <ul class="list-group list-group-flush">
                 @foreach (var store in Model)
                 {
-                    <li class="list-group-item" style="padding-left:10%">
-                        <h6 class="store-location">
-                            <span class="store-city">@store.StoreCity</span> -
-                            <span class="store-street">@store.StoreStreet</span>
-                        </h6>
-                        <span> Tel: @store.StoresPhoneNumber</span>
-
-                    </li>
+                <li class="list-group-item" style="padding-left:10%">
+                    <h6 class="store-location">
+                        <span class="store-city">@store.StoreCity</span> -
+                        <span class="store-street">@store.StoreStreet</span>
+                    </h6>
+                    <span> Tel: @store.StoresPhoneNumber</span>
+                    @if (Globals.isManagerConnected(Context.Session))
+                    {
+                        <button class="btn btn-danger" asp-action="Delete" asp-route-id="@store.StoreID">Delete</button>
+                    }
+                </li>
                 }
             </ul>
-
+            @if (Globals.isManagerConnected(Context.Session))
+            {
+            <div>
+                <button class="btn btn-info" style="margin-left: 320px; margin-top:15px;" asp-action="Create">add store</button>
+            </div>
+            }
         </div>
+        
         <div id="mapid"></div>
     </div>
 </form>

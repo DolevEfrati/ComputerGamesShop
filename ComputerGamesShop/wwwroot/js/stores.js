@@ -41,3 +41,7 @@ async function makeHttpRequest(url, method) {
         console.error(err);
     }
 }
+
+function createStore() {
+    location.href = "/Stores/Create";
+}

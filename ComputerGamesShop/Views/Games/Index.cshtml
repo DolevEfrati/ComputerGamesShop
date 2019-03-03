@@ -30,7 +30,15 @@
                 }
                 <input type="submit" value="Filter" class="btn btn-default" style="margin-left:5px" />
             </div>
-        </form> 
+
+        </form>
+        @if (Globals.isManagerConnected(Context.Session))
+        {
+            <form method = "get" action = "/games/create" >
+                <button class="btn btn-info" type = "submit" style="margin-left:8px;">add game</button>
+            </form>
+        
+        }
     </div>
 
     <ul id="games-list" class="games-result-list col-md-8 column-in-center" style="list-style-type: none; margin: auto;">

@@ -1,6 +1,8 @@
 ﻿$(document).ready(function () {
     if (document.getElementById("games-list").getElementsByTagName("li").length == 0) {
         document.getElementById("confirmBtn").disabled = true;
+        document.getElementById("storesList").value = '';
+        document.getElementById("storesList").disabled = true;
     }
 
     var sum = 0
