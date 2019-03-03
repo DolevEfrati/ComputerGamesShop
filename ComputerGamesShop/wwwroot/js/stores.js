@@ -32,7 +32,7 @@ async function makeHttpRequest(url, method) {
 
         const result = await res.json();
         if (res.status === 404 || res.status === 409) {
-            toastr.error(result.message);
+            console.error(result.message);
             return;
         }
 

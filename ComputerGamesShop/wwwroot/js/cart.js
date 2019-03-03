@@ -8,7 +8,7 @@
         sum += parseFloat(p.innerText.split('$')[0])
     })
     $('#sum').html(sum + '$')
-    $('#currency-btn').html( $('#currency-btn').text() + ' ' + geoplugin_currencySymbol())
+    $('#currency-btn').html($('#currency-btn').text() + ' ' + geoplugin_currencySymbol())
 });
 
 $('#currency-btn').click(function () {
@@ -57,11 +57,22 @@ function saveOrder() {
         url: "/api/saveOrder",
         data: { storeId: storeId },
         success: function () {
-            alert('done');
-            location.href = '/';
+            Swal.fire({
+                type: 'success',
+                title: 'Your order has been saved',
+                showConfirmButton: false,
+                timer: 2500,
+                onClose: () => {
+                    location.href = '/';
+                }
+            })
         },
         error: function (xhr, status) {
-            alert(status);
+            Swal.fire({
+                type: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong! status:' + status,
+            })
         }
     });
 }
