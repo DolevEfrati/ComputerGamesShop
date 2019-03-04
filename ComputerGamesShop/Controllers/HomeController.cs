@@ -8,16 +8,20 @@ using Microsoft.EntityFrameworkCore;
 using ComputerGamesShop.Models;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using ComputerGamesShop.Services;
 
 namespace ComputerGamesShop.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ComputerGamesShopContext _context;
+        private Twitter twitterContext;
 
         public HomeController(ComputerGamesShopContext context)
         {
             _context = context;
+            twitterContext = new Twitter();
+
         }
 
         public IActionResult Index()
@@ -45,7 +49,7 @@ namespace ComputerGamesShop.Controllers
 
         // POST: Home/login
         [HttpPost]
-        public async Task<IActionResult> Login([Bind("Email,Password")] User loginData)
+        public async Task<IActionResult> Login([Bind("Email,Password")] Models.User loginData)
         {
             if (loginData.Email == null || loginData.Password == null)
             {
@@ -111,5 +115,22 @@ namespace ComputerGamesShop.Controllers
         {
             return View("Recommendation");
         }
+
+        // GET: /twitter
+        [Route("twitter")]
+        public IActionResult getViewTwitter()
+        {
+            return View("Twitter");
+        }
+
+
+        // POST: Home/tweet
+        [HttpPost]
+        public async Task<IActionResult> Tweet(string message)
+        {
+            await twitterContext.Tweet(message);
+            return RedirectToAction("Index", "twitter", new { });
+        }
+
     }
 }

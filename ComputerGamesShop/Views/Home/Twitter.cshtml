@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Twitter";
+}
+<script>
+window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+
+  return t;
+}(document, "script", "twitter-wjs"));</script>
+
+<div class="container">
+    <form method="post" action="home/tweet" class="input-container">
+        <input type="text" placeholder="Enter your tweet..." name="message" class="tweet-input" />
+        <button type="submit" class="tweet-button">Tweet</button>
+    </form>
+    <a class="twitter-timeline" data-theme="dark" data-link-color="#E95F28" href="https://twitter.com/ColmanGames?ref_src=twsrc%5Etfw">Tweets by ColmanGames</a>
+
+    <link rel="stylesheet" href="~/css/twitter.css" />
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>
