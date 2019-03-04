@@ -1,0 +1,22 @@
+﻿.input-container {
+    display: flex;
+    width: 100%;
+    padding: 5px 0;
+}
+
+.tweet-input {
+    flex-basis: 80%;
+    font-size: 2em;
+    border-radius: 7px 0 0 7px;
+}
+
+.tweet-button {
+    flex: 1;
+    border-radius: 0 7px 7px 0;
+    font-size: 2em;
+}
+
+.tweet-button:hover {
+    cursor: pointer;
+    background-color: #dadada;
+}
