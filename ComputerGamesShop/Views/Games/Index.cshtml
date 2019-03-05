@@ -73,10 +73,10 @@
                             {
                                 @if (Globals.isManagerConnected(Context.Session))
                                 {
-                                    <a href="games/delete/@game.ID">
+                                    <a href="games/delete/@game.ID" style="text-decoration: none;">
                                         <button class="btn" type="submit" form="remove-game-btn" value="@game.ID" style="width:80px; background-color:#ff3333;">delete</button>
                                     </a>
-                                    <a href="games/edit/@game.ID">
+                                    <a href="games/edit/@game.ID" style="text-decoration: none;">  
                                         <button class="btn" type="submit" form="edit-game-btn" value="@game.ID" style="width:80px; background-color: #c9c7c5;">edit</button>
                                     </a>
                                 }

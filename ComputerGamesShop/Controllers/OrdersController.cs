@@ -33,16 +33,38 @@ namespace ComputerGamesShop.Controllers
                 return NotFound();
             }
 
-            var order = await _context.Order
-                .Include(o => o.Customer)
-                .Include(o => o.Store)
-                .SingleOrDefaultAsync(m => m.OrderID == id);
-            if (order == null)
+            var orderDetails =
+                _context.Order
+                    .Join(_context.OrderItems,
+                            order => order.OrderID,
+                            items => items.orderId,
+                            (order, items) => new { order, items })
+                    .Join(_context.Game,
+                            orderAndItems => orderAndItems.items.gameId,
+                            game => game.ID,
+                            (orderAndItems, game) => new OrderDetails
+                            {
+                                OrderId = orderAndItems.order.OrderID,
+                                StoreName = orderAndItems.order.Store.DisplayName,
+                                CustomerEmail = orderAndItems.order.Customer.Email,
+                                OrderDate = orderAndItems.order.OrderDate.ToShortDateString(),
+                                gameName = game.Title,
+                                Price = game.Price
+                            })
+                     .Where(singleOrderDetails => singleOrderDetails.OrderId == id);
+
+
+
+            //var orderDetails = await _context.Order
+            //    .Include(o => o.Customer)
+            //    .Include(o => o.Store)
+            //    .SingleOrDefaultAsync(m => m.OrderID == id);
+            if (orderDetails == null)
             {
                 return NotFound();
             }
 
-            return View(order);
+            return View(orderDetails);
         }
 
         // GET: Orders/Create

@@ -5,28 +5,14 @@ using System.Threading.Tasks;
 
 namespace ComputerGamesShop.Models
 {
-    public class Group<K, T>
+    public class OrderDetails
     {
-        public K Key;
-        public IEnumerable<T> Values;
-    }
-
-    public class StoreOrdersView
-    {
-        public int branchId;
-        public string branchName;
-        public string storeCity;
-        public DateTime orderDate;
-    }
-
-    public class StoreCustomerView
-    {
-        public int storehId;
-        public string storeName;
-        public string storeCity;
-        public string firstName;
-        public string lastName;
-        public DateTime birthDate;
+        public int OrderId { get; set; }
+        public string OrderDate { get; set; }
+        public string StoreName { get; set; }
+        public string gameName { get; set; }
+        public string CustomerEmail { get; set; }
+        public double Price { get; set; }
     }
 
     public class GameQuery

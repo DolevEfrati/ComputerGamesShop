@@ -71,9 +71,12 @@
 
                     @if (Globals.isManagerConnected(Context.Session))
                     {
-                         <li><a href="/twitter">Twitter</a></li>
-                    } else {
-                         <li><a href="/recommendation">Recommendations</a></li>
+                        <li><a href="/twitter">Twitter</a></li>
+                        <li><a href="/orders">Orders</a></li>
+                    }
+                    else
+                    {
+                        <li><a href="/recommendation">Recommendations</a></li>
                     }
                     <li><a href="/statistics">Statistics</a></li>
                 </ul>

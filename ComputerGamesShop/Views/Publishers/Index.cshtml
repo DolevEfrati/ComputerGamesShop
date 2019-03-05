@@ -27,10 +27,10 @@
                 <div class="col-md-4" style="display: flex; align-items:center;">
                     @if (Globals.isManagerConnected(Context.Session))
                     {
-                        <a href="publishers/delete/@publisher.ID">
+                        <a href="publishers/delete/@publisher.ID" style="text-decoration: none;">
                             <button class="btn" type="submit" form="remove-publisher-btn" value="@publisher.ID" style="margin-right:5px; flex:1; background-color:#ff3333;">delete</button>
                         </a>
-                        <a href="publishers/edit/@publisher.ID">
+                        <a href="publishers/edit/@publisher.ID" style="text-decoration: none;">
                             <button class="btn" type="submit" form="edit-publisher-btn" value="@publisher.ID" style=" flex:1; background-color:#c9c7c5;">edit</button>
                         </a>
                     }
