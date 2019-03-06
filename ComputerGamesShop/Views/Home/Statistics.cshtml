@@ -27,13 +27,6 @@
         svg.append("g").attr("id", "bars");
 
         function colorize(data) {
-            //var colors = [
-            //    "#3366CC",
-            //    "#DC3912",
-            //    "#FF9900",
-            //    "#109618",
-            //    "#990099"
-            //]
             var colors = d3.scale.category20c();
             var i = 0
             return data.map(function (d) {
