@@ -27,17 +27,18 @@
         svg.append("g").attr("id", "bars");
 
         function colorize(data) {
-            var colors = [
-                "#3366CC",
-                "#DC3912",
-                "#FF9900",
-                "#109618",
-                "#990099"
-            ]
+            //var colors = [
+            //    "#3366CC",
+            //    "#DC3912",
+            //    "#FF9900",
+            //    "#109618",
+            //    "#990099"
+            //]
+            var colors = d3.scale.category20c();
             var i = 0
             return data.map(function (d) {
                 i++
-                return { label: d.name + ' sales: ' + d.count, value: d.count, color: colors[i % colors.length] };
+                return { label: d.name + ' sales: ' + d.count, value: d.count, color: colors(i) };
             });
         }
     </script>
