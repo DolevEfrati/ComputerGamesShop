@@ -12,7 +12,7 @@
             type: 'GET',
             url: "/home/statistics",
             success: function (data) {
-                gradPie.drawChartBar("bars", data.items[1], 500, 500, "Sales per Game");
+                gradPie.drawChartBar("bars", data.items[1], 500, 500, "Sales per Publisher");
                 gradPie.draw("salespie", colorize(data.items[0]), 800, 200, 160, "Sales per Shop");
             },
             error: function (xhr, status) {

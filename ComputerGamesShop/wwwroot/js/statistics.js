@@ -72,7 +72,7 @@
         var yAxis = d3.svg.axis()
             .scale(y)
             .orient("left")
-            .ticks(10);
+            .ticks(d3.max(data, function(d) { return d.count; }));
 
         var tooltip = d3.select("body")
                         .append("div")
